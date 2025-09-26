@@ -1,8 +1,16 @@
+import sys
+# Prevent Ultralytics from trying to import SAM and RTDETR
+sys.modules["ultralytics.models.sam"] = None
+sys.modules["ultralytics.models.rtdetr"] = None
+
+from ultralytics import YOLO
+
+
 import streamlit as st
 import os
 import shutil
 import zipfile
-from ultralytics import YOLO
+# from ultralytics import YOLO
 from pathlib import Path
 import cv2
 from PIL import Image
