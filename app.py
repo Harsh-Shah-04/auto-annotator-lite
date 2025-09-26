@@ -101,6 +101,12 @@
 import streamlit as st
 import cv2
 import pkg_resources
+import streamlit as st
+import cv2, sys
+
+st.write("🐍 Python version:", sys.version)
+st.write("✅ OpenCV version:", cv2.__version__)
+
 
 st.write("✅ OpenCV version:", cv2.__version__)
 st.write("📦 Installed packages:", [p.project_name for p in pkg_resources.working_set if "opencv" in p.project_name.lower()])
