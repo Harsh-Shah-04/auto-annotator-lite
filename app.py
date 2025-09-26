@@ -7,6 +7,9 @@ from pathlib import Path
 import cv2
 from PIL import Image
 
+st.write("✅ OpenCV version:", cv2.__version__)
+
+
 # Load your trained YOLO model
 model = YOLO("best.pt")  # change to your best.pt
 
@@ -51,10 +54,12 @@ if uploaded_files:
     st.subheader("🔍 Preview Labeled Images")
     result_dir = Path(OUTPUT_DIR) / "results"
 
-    # Show a few annotated images
-    image_files = list((result_dir / "predict").glob("*.jpg"))
-    if not image_files:  # fallback if predict folder not created
+    predict_dirs = list(result_dir.glob("predict*"))
+    if predict_dirs:
+        image_files = list(predict_dirs[0].glob("*.jpg"))
+    else:
         image_files = list(result_dir.glob("*.jpg"))
+
 
     for img_path in image_files[:5]:  # show first 5 previews
         st.image(str(img_path), caption=f"Preview: {img_path.name}")
